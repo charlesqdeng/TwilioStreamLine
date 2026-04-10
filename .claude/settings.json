@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(brew install:*)",
+      "Bash(brew services:*)",
+      "Bash(export PATH=\"/opt/homebrew/opt/postgresql@14/bin:$PATH\")",
+      "Bash(psql --version)",
+      "Bash(createdb streamline:*)",
+      "Bash(psql -l)",
+      "Bash(node -e \"console.log\\(require\\(''crypto''\\).randomBytes\\(32\\).toString\\(''hex''\\)\\)\")",
+      "Bash(node -e \"console.log\\(require\\(''crypto''\\).randomBytes\\(64\\).toString\\(''base64''\\)\\)\")",
+      "Bash(redis-cli ping:*)",
+      "Bash(~/.zshrc)",
+      "Read(//Users/cdeng/**)"
+    ]
+  }
+}

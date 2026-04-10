@@ -1,0 +1,34 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1774976825731,
+      "tag": "0000_true_tomas",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1774980220870,
+      "tag": "0001_sloppy_doctor_doom",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1775504925356,
+      "tag": "0002_lame_thunderbolts",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1775837272131,
+      "tag": "0003_silky_iron_fist",
+      "breakpoints": true
+    }
+  ]
+}
