@@ -1,0 +1,1 @@
+ALTER TABLE "twilio_subaccounts" ADD COLUMN "api_key_sid" text;
