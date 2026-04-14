@@ -51,6 +51,9 @@ npm install
 cp .env.example backend/.env
 # Edit backend/.env with your database credentials
 
+# Frontend (optional - uses defaults if not set)
+cp frontend/.env.local.example frontend/.env.local
+
 # Generate encryption key
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 # Add to MASTER_ENCRYPTION_KEY in backend/.env
@@ -113,8 +116,10 @@ streamline/
 │   │   ├── lib/            # API client, socket client
 │   │   └── store/          # Zustand state management
 │   └── package.json
-├── CLAUDE.md               # Implementation guide
-├── prd.md                  # Product requirements
+├── docs/                   # Setup guides and documentation
+├── PRD.md                  # Product requirements
+├── CHANGELOG.md            # Version history
+├── README.md               # This file
 └── package.json            # Root workspace config
 ```
 
@@ -216,9 +221,10 @@ brew services start redis
 redis-cli ping        # Check connection
 redis-cli FLUSHALL    # Clear all queues
 
-# Workers
-npm run worker        # Event processor (Terminal 2)
-npm run worker:summary # Daily summary scheduler (Terminal 3)
+# Workers (run from backend directory)
+cd backend
+npm run worker         # Event processor (handles real-time webhooks & notifications)
+npm run worker:summary # Daily summary scheduler (sends digest emails/SMS)
 
 # Troubleshooting
 lsof -ti:3000 | xargs kill -9   # Kill frontend port
@@ -262,7 +268,6 @@ brew services list              # Check service status
 | Document | Description |
 |----------|-------------|
 | **[PRD.md](./PRD.md)** | Product requirements & specifications |
-| **[CLAUDE.md](./CLAUDE.md)** | Architecture & implementation guide |
 | **[CHANGELOG.md](./CHANGELOG.md)** | Version history & updates |
 | **[docs/](./docs/)** | Setup guides, deployment, testing, and more |
 

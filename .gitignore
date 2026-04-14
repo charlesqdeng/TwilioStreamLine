@@ -52,7 +52,6 @@ Thumbs.db
 postgres-data/
 
 # Documentation (excluded from commits)
-docs/
 CLAUDE.md
 
 # Test scripts
