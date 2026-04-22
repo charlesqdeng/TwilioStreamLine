@@ -1,19 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSubaccountStore } from '@/store/useSubaccountStore';
+import { useSubaccountStore, type Subaccount } from '@/store/useSubaccountStore';
 import api from '@/lib/api';
 import AddSubaccountModal from '@/components/AddSubaccountModal';
 import { PlusCircle, Trash2, AlertTriangle, Loader2 } from 'lucide-react';
-
-interface Subaccount {
-  id: string;
-  friendlyName: string;
-  twilioSid: string;
-  sinkSid: string | null;
-  isActive: boolean;
-  createdAt: string;
-}
 
 export default function SettingsPage() {
   const { subaccounts, setSubaccounts, activeSubaccountId, setActiveSubaccount, removeSubaccount } = useSubaccountStore();
