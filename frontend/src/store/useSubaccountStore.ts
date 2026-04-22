@@ -1,10 +1,11 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-interface Subaccount {
+export interface Subaccount {
   id: string;
   friendlyName: string;
   twilioSid: string;
+  sinkSid?: string;
   isActive: boolean;
   createdAt: string;
 }
@@ -13,7 +14,7 @@ interface SubaccountState {
   subaccounts: Subaccount[];
   activeSubaccountId: string | null;
   setSubaccounts: (subaccounts: Subaccount[]) => void;
-  setActiveSubaccount: (id: string) => void;
+  setActiveSubaccount: (id: string | null) => void;
   addSubaccount: (subaccount: Subaccount) => void;
   removeSubaccount: (id: string) => void;
   getActiveSubaccount: () => Subaccount | null;
