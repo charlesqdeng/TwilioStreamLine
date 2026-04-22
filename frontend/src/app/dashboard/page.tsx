@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useSubaccountStore } from '@/store/useSubaccountStore';
+import { useAuthStore } from '@/store/useAuthStore';
+import { initSocket, getSocket } from '@/lib/socket';
 import api from '@/lib/api';
 import AddSubaccountModal from '@/components/AddSubaccountModal';
 import { PlusCircle, Loader2 } from 'lucide-react';
@@ -13,6 +15,7 @@ interface Stats {
 
 export default function DashboardPage() {
   const { subaccounts, setSubaccounts, activeSubaccountId, setActiveSubaccount } = useSubaccountStore();
+  const { token } = useAuthStore();
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [stats, setStats] = useState<Stats>({ totalEvents: 0, activeSubscriptions: 0 });
@@ -26,6 +29,56 @@ export default function DashboardPage() {
     if (activeSubaccountId) {
       fetchStats();
     }
+  }, [activeSubaccountId]);
+
+  // Initialize WebSocket connection and listen for new events
+  useEffect(() => {
+    if (!token) return;
+
+    const socket = initSocket(token);
+
+    socket.on('connect', () => {
+      console.log('✅ Dashboard WebSocket connected');
+    });
+
+    socket.on('disconnect', () => {
+      console.log('❌ Dashboard WebSocket disconnected');
+    });
+
+    return () => {
+      socket.off('connect');
+      socket.off('disconnect');
+    };
+  }, [token]);
+
+  // Join/leave subaccount room and listen for events
+  useEffect(() => {
+    if (!activeSubaccountId) return;
+
+    const socket = getSocket();
+    if (!socket) return;
+
+    // Join room for active subaccount
+    socket.emit('join-subaccount', activeSubaccountId);
+    console.log(`📡 Dashboard joined room: ${activeSubaccountId}`);
+
+    // Listen for new events and increment counter
+    const handleNewEvent = () => {
+      console.log('🔔 Dashboard received new event notification');
+      setStats((prev) => ({
+        ...prev,
+        totalEvents: prev.totalEvents + 1,
+      }));
+    };
+
+    socket.on('new-event', handleNewEvent);
+
+    // Cleanup
+    return () => {
+      socket.emit('leave-subaccount', activeSubaccountId);
+      socket.off('new-event', handleNewEvent);
+      console.log(`📴 Dashboard left room: ${activeSubaccountId}`);
+    };
   }, [activeSubaccountId]);
 
   const fetchSubaccounts = async () => {
