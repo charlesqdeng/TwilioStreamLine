@@ -1,7 +1,8 @@
 {
-  "name": "streamline",
+  "name": "eventstream",
   "version": "1.0.0",
   "description": "Multi-tenant monitoring dashboard for Twilio subaccounts",
+  "author": "Charles Deng <deng.charles@gmail.com>",
   "private": true,
   "workspaces": [
     "frontend",

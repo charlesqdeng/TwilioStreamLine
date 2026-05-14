@@ -95,7 +95,7 @@ export class NotificationService {
 
     try {
       const info = await this.emailTransporter.sendMail({
-        from: process.env.EMAIL_FROM || 'StreamLine <noreply@streamline.app>',
+        from: process.env.EMAIL_FROM || 'EventStream <noreply@eventstream.app>',
         to: options.email,
         subject: options.subject,
         text: options.message,
@@ -163,12 +163,12 @@ export class NotificationService {
   formatEventNotification(event: EventData, subaccountName: string): NotificationOptions {
     const eventTypePretty = event.eventType.replace(/\./g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
 
-    const subject = `[StreamLine] ${eventTypePretty}`;
-    const message = `New event received for ${subaccountName}:\n\nEvent Type: ${event.eventType}\nReceived At: ${event.receivedAt.toISOString()}\n\nView details in your StreamLine dashboard.`;
+    const subject = `[EventStream] ${eventTypePretty}`;
+    const message = `New event received for ${subaccountName}:\n\nEvent Type: ${event.eventType}\nReceived At: ${event.receivedAt.toISOString()}\n\nView details in your EventStream dashboard.`;
 
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #6366f1;">StreamLine Event Notification</h2>
+        <h2 style="color: #6366f1;">EventStream Event Notification</h2>
         <p>New event received for <strong>${subaccountName}</strong></p>
 
         <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin: 20px 0;">
@@ -177,7 +177,7 @@ export class NotificationService {
           <p><strong>Event ID:</strong> ${event.id}</p>
         </div>
 
-        <p>View full details in your <a href="${process.env.FRONTEND_URL}/dashboard/events" style="color: #6366f1;">StreamLine dashboard</a>.</p>
+        <p>View full details in your <a href="${process.env.FRONTEND_URL}/dashboard/events" style="color: #6366f1;">EventStream dashboard</a>.</p>
       </div>
     `;
 
@@ -193,7 +193,7 @@ export class NotificationService {
     startDate: Date,
     endDate: Date
   ): NotificationOptions {
-    const subject = `[StreamLine] Daily Summary for ${subaccountName}`;
+    const subject = `[EventStream] Daily Summary for ${subaccountName}`;
 
     // Group events by type
     const eventsByType = events.reduce((acc, event) => {
@@ -206,7 +206,7 @@ export class NotificationService {
       .map(([type, count]) => `  • ${type}: ${count}`)
       .join('\n');
 
-    const message = `Daily Event Summary for ${subaccountName}\n\nPeriod: ${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}\n\nTotal Events: ${events.length}\n\nBreakdown by type:\n${eventTypeList}\n\nView details in your StreamLine dashboard.`;
+    const message = `Daily Event Summary for ${subaccountName}\n\nPeriod: ${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}\n\nTotal Events: ${events.length}\n\nBreakdown by type:\n${eventTypeList}\n\nView details in your EventStream dashboard.`;
 
     const eventTypeHtml = Object.entries(eventsByType)
       .sort((a, b) => b[1] - a[1])
@@ -215,7 +215,7 @@ export class NotificationService {
 
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #6366f1;">StreamLine Daily Summary</h2>
+        <h2 style="color: #6366f1;">EventStream Daily Summary</h2>
         <p>Event summary for <strong>${subaccountName}</strong></p>
 
         <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin: 20px 0;">
@@ -228,7 +228,7 @@ export class NotificationService {
           ${eventTypeHtml}
         </ul>
 
-        <p>View full details in your <a href="${process.env.FRONTEND_URL}/dashboard/events" style="color: #6366f1;">StreamLine dashboard</a>.</p>
+        <p>View full details in your <a href="${process.env.FRONTEND_URL}/dashboard/events" style="color: #6366f1;">EventStream dashboard</a>.</p>
       </div>
     `;
 

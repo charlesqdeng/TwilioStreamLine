@@ -140,7 +140,7 @@ export class TwilioService {
     try {
       const client = this.createClient(accountSid, authToken, apiKeySid);
       const subscription = await client.events.v1.subscriptions.create({
-        description: 'StreamLine Subscription',
+        description: 'EventStream Subscription',
         sinkSid,
         types: eventTypes.map((type) => ({ type })),
       });

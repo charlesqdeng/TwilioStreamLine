@@ -47,7 +47,7 @@ app.use(passport.initialize());
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({
-    name: 'StreamLine API',
+    name: 'EventStream API',
     version: '1.0.0',
     status: 'running',
     endpoints: {
@@ -104,7 +104,7 @@ app.use(errorHandler);
 
 // Start server
 httpServer.listen(PORT, () => {
-  console.log(`🚀 StreamLine backend running on port ${PORT}`);
+  console.log(`🚀 EventStream backend running on port ${PORT}`);
   console.log(`📡 WebSocket server ready`);
   console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
 });

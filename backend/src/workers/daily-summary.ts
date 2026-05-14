@@ -107,7 +107,7 @@ async function processDailySummary(subaccountId: string) {
 
     if (prefs.smsEnabled && prefs.phoneNumber) {
       // For SMS, use a shorter message
-      const smsMessage = `StreamLine Daily Summary for ${subaccount.friendlyName}: ${events.length} events in the last 24 hours. View details at ${process.env.FRONTEND_URL}/dashboard/events`;
+      const smsMessage = `EventStream Daily Summary for ${subaccount.friendlyName}: ${events.length} events in the last 24 hours. View details at ${process.env.FRONTEND_URL}/dashboard/events`;
       await notificationService.sendSMS({
         subject: notification.subject,
         message: smsMessage,

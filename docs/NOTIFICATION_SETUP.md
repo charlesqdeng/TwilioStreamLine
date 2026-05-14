@@ -1,6 +1,6 @@
 # Notification Setup Guide
 
-Complete guide to configure email and SMS notifications for StreamLine.
+Complete guide to configure email and SMS notifications for EventStream.
 
 ## 📧 Email Notifications
 
@@ -36,7 +36,7 @@ You can choose between Gmail (SMTP) or SendGrid. Gmail is easier for testing, Se
 4. You may need to sign in again
 5. Select app: **"Mail"**
 6. Select device: **"Other (Custom name)"**
-7. Type: `StreamLine Notifications`
+7. Type: `EventStream Notifications`
 8. Click **"Generate"**
 9. **Copy the 16-character password** (format: `abcd efgh ijkl mnop`)
 10. ⚠️ Save it - you won't see it again!
@@ -48,7 +48,7 @@ Edit `/backend/.env`:
 ```bash
 # Keep these settings
 EMAIL_PROVIDER=smtp
-EMAIL_FROM=StreamLine <noreply@streamline.app>
+EMAIL_FROM=EventStream <noreply@eventstream.app>
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_SECURE=false
@@ -100,7 +100,7 @@ You should receive a test email at your Gmail address! 🎉
 1. In SendGrid dashboard, go to **Settings** → **API Keys**
    - Direct link: https://app.sendgrid.com/settings/api_keys
 2. Click **"Create API Key"**
-3. Name: `StreamLine Notifications`
+3. Name: `EventStream Notifications`
 4. Permission: Choose **"Full Access"** (or minimum "Mail Send")
 5. Click **"Create & View"**
 6. **Copy the API key** (starts with `SG.`)
@@ -114,7 +114,7 @@ SendGrid requires sender verification:
    - Direct link: https://app.sendgrid.com/settings/sender_auth
 2. Choose **"Single Sender Verification"** (easiest)
 3. Fill in the form:
-   - **From Name**: `StreamLine`
+   - **From Name**: `EventStream`
    - **From Email**: Your email (can be Gmail, business email, etc.)
    - **Reply To**: Same email or different
    - Other fields as appropriate
@@ -130,7 +130,7 @@ Edit `/backend/.env`:
 ```bash
 # Change provider to SendGrid
 EMAIL_PROVIDER=sendgrid
-EMAIL_FROM=StreamLine <your-verified-email@example.com>  # MUST match verified email
+EMAIL_FROM=EventStream <your-verified-email@example.com>  # MUST match verified email
 
 # Comment out SMTP settings
 # SMTP_HOST=smtp.gmail.com
@@ -300,7 +300,7 @@ Wait 1 minute, and you should receive a summary email!
 
 ### Real-time Email Example
 
-**Subject:** `[StreamLine] Messaging Message Sent`
+**Subject:** `[EventStream] Messaging Message Sent`
 
 **Body:**
 ```
@@ -310,12 +310,12 @@ Event Type: messaging.message.sent
 Received At: 2026-04-10 10:15:23 AM
 Event ID: EV1234567890
 
-View full details in your StreamLine dashboard.
+View full details in your EventStream dashboard.
 ```
 
 ### Daily Summary Email Example
 
-**Subject:** `[StreamLine] Daily Summary for My Subaccount`
+**Subject:** `[EventStream] Daily Summary for My Subaccount`
 
 **Body:**
 ```
@@ -329,13 +329,13 @@ Breakdown by type:
 • messaging.message.delivered: 20 events
 • call.started: 2 events
 
-View details in your StreamLine dashboard.
+View details in your EventStream dashboard.
 ```
 
 ### SMS Example
 
 ```
-[StreamLine] New event: messaging.message.sent for My Subaccount. 
+[EventStream] New event: messaging.message.sent for My Subaccount. 
 View at http://localhost:3000/dashboard/events
 ```
 

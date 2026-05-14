@@ -1,6 +1,6 @@
-# StreamLine - Deployment Guide
+# EventStream - Deployment Guide
 
-Complete guide for deploying StreamLine in various environments.
+Complete guide for deploying EventStream in various environments.
 
 ## Table of Contents
 
@@ -45,7 +45,7 @@ brew services start redis
 redis-cli ping
 
 # Create database
-createdb streamline
+createdb eventstream
 ```
 
 **2. Install Dependencies:**
@@ -141,8 +141,8 @@ services:
   postgres:
     image: postgres:14-alpine
     environment:
-      POSTGRES_DB: streamline
-      POSTGRES_USER: streamline
+      POSTGRES_DB: eventstream
+      POSTGRES_USER: eventstream
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -164,7 +164,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile.prod
     environment:
-      DATABASE_URL: postgresql://streamline:${DB_PASSWORD}@postgres:5432/streamline
+      DATABASE_URL: postgresql://eventstream:${DB_PASSWORD}@postgres:5432/eventstream
       REDIS_URL: redis://redis:6379
       MASTER_ENCRYPTION_KEY: ${MASTER_ENCRYPTION_KEY}
       JWT_SECRET: ${JWT_SECRET}
@@ -183,7 +183,7 @@ services:
       dockerfile: Dockerfile.prod
     command: npm run worker
     environment:
-      DATABASE_URL: postgresql://streamline:${DB_PASSWORD}@postgres:5432/streamline
+      DATABASE_URL: postgresql://eventstream:${DB_PASSWORD}@postgres:5432/eventstream
       REDIS_URL: redis://redis:6379
       NODE_ENV: production
     depends_on:
@@ -265,7 +265,7 @@ CMD ["npm", "start"]
 export DB_PASSWORD=your_secure_password
 export MASTER_ENCRYPTION_KEY=$(openssl rand -hex 32)
 export JWT_SECRET=$(openssl rand -base64 64)
-export DOMAIN=streamline.yourdomain.com
+export DOMAIN=eventstream.yourdomain.com
 
 # Start services
 docker-compose -f docker-compose.prod.yml up -d
@@ -286,7 +286,7 @@ brew install heroku/brew/heroku
 heroku login
 
 # Create app
-heroku create streamline-api
+heroku create eventstream-api
 
 # Add addons
 heroku addons:create heroku-postgresql:mini
@@ -296,7 +296,7 @@ heroku addons:create heroku-redis:mini
 heroku config:set NODE_ENV=production
 heroku config:set MASTER_ENCRYPTION_KEY=$(openssl rand -hex 32)
 heroku config:set JWT_SECRET=$(openssl rand -base64 64)
-heroku config:set WEBHOOK_BASE_URL=https://streamline-api.herokuapp.com/v1/ingest
+heroku config:set WEBHOOK_BASE_URL=https://eventstream-api.herokuapp.com/v1/ingest
 
 # Deploy backend
 git subtree push --prefix backend heroku main
@@ -326,12 +326,12 @@ pip install awsebcli
 2. **Initialize:**
 ```bash
 cd backend
-eb init -p node.js-18 streamline-backend
+eb init -p node.js-18 eventstream-backend
 ```
 
 3. **Create Environment:**
 ```bash
-eb create streamline-prod \
+eb create eventstream-prod \
   --instance-type t3.small \
   --envvars DATABASE_URL=$DATABASE_URL,REDIS_URL=$REDIS_URL,...
 ```
@@ -349,7 +349,7 @@ eb deploy
 
 ```bash
 # Database (use managed service URL in production)
-DATABASE_URL=postgresql://user:password@host:5432/streamline
+DATABASE_URL=postgresql://user:password@host:5432/eventstream
 
 # Redis (use managed service URL in production)
 REDIS_URL=redis://host:6379
@@ -366,10 +366,10 @@ PORT=3001
 NODE_ENV=production
 
 # CORS (your frontend domain)
-FRONTEND_URL=https://streamline.yourdomain.com
+FRONTEND_URL=https://eventstream.yourdomain.com
 
 # Webhooks (your public domain)
-WEBHOOK_BASE_URL=https://api.streamline.yourdomain.com/v1/ingest
+WEBHOOK_BASE_URL=https://api.eventstream.yourdomain.com/v1/ingest
 
 # Limits
 MAX_EVENTS_PER_SUBACCOUNT=1000
@@ -382,10 +382,10 @@ SENTRY_DSN=your_sentry_dsn_here
 
 ```bash
 # Backend API endpoint
-NEXT_PUBLIC_API_URL=https://api.streamline.yourdomain.com
+NEXT_PUBLIC_API_URL=https://api.eventstream.yourdomain.com
 
 # WebSocket endpoint (same as API)
-NEXT_PUBLIC_WS_URL=https://api.streamline.yourdomain.com
+NEXT_PUBLIC_WS_URL=https://api.eventstream.yourdomain.com
 ```
 
 ### Security Best Practices
@@ -422,7 +422,7 @@ openssl rand -base64 64
 
 ```bash
 # Create database
-createdb streamline
+createdb eventstream
 
 # Run migrations
 cd backend
@@ -446,10 +446,10 @@ npm run db:seed
 2. **Configure connection:**
 ```bash
 # Use connection pooling
-DATABASE_URL=postgresql://user:pass@host:5432/streamline?pool_timeout=10&connect_timeout=10
+DATABASE_URL=postgresql://user:pass@host:5432/eventstream?pool_timeout=10&connect_timeout=10
 
 # SSL mode for production
-DATABASE_URL=postgresql://user:pass@host:5432/streamline?sslmode=require
+DATABASE_URL=postgresql://user:pass@host:5432/eventstream?sslmode=require
 ```
 
 3. **Run migrations:**
@@ -462,8 +462,8 @@ npm run db:migrate
 ```bash
 # Automated daily backups (example for AWS RDS)
 aws rds create-db-snapshot \
-  --db-instance-identifier streamline-prod \
-  --db-snapshot-identifier streamline-backup-$(date +%Y%m%d)
+  --db-instance-identifier eventstream-prod \
+  --db-snapshot-identifier eventstream-backup-$(date +%Y%m%d)
 ```
 
 ### Migrations
@@ -541,7 +541,7 @@ pm2 startup
 module.exports = {
   apps: [
     {
-      name: 'streamline-backend',
+      name: 'eventstream-backend',
       cwd: './backend',
       script: 'dist/index.js',
       instances: 2,
@@ -552,7 +552,7 @@ module.exports = {
       }
     },
     {
-      name: 'streamline-worker',
+      name: 'eventstream-worker',
       cwd: './backend',
       script: 'dist/workers/event-processor.js',
       instances: 1,
@@ -561,7 +561,7 @@ module.exports = {
       }
     },
     {
-      name: 'streamline-frontend',
+      name: 'eventstream-frontend',
       cwd: './frontend',
       script: 'node_modules/next/dist/bin/next',
       args: 'start',
@@ -600,13 +600,13 @@ module.exports = {
 
 **Backend:**
 ```bash
-curl https://api.streamline.com/health
+curl https://api.eventstream.com/health
 # Response: {"status":"ok","timestamp":"2026-04-06T12:00:00Z"}
 ```
 
 **Frontend:**
 ```bash
-curl https://streamline.com/
+curl https://eventstream.com/
 # Should return 200 OK
 ```
 
@@ -669,7 +669,7 @@ if (process.env.NODE_ENV === 'production') {
 ```yaml
 # Example Prometheus alerts
 groups:
-  - name: streamline
+  - name: eventstream
     rules:
       - alert: HighErrorRate
         expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.05
@@ -748,7 +748,7 @@ redis-cli
 > LLEN bull:event-queue:wait
 
 # Check worker logs
-pm2 logs streamline-worker
+pm2 logs eventstream-worker
 ```
 
 #### Webhook Events Not Arriving
@@ -765,7 +765,7 @@ curl https://your-domain.com/v1/ingest/health
 3. **Check backend logs:**
 ```bash
 # Look for "Event queued" or errors
-pm2 logs streamline-backend
+pm2 logs eventstream-backend
 ```
 
 4. **Check firewall:**
@@ -780,7 +780,7 @@ sudo iptables -L -n | grep 443
 
 ```sql
 -- Enable query logging
-ALTER DATABASE streamline SET log_min_duration_statement = 1000;
+ALTER DATABASE eventstream SET log_min_duration_statement = 1000;
 
 -- Check slow queries
 SELECT * FROM pg_stat_statements 
@@ -806,7 +806,7 @@ node --inspect dist/index.js
 
 ```bash
 # Add more worker instances
-pm2 scale streamline-worker +2
+pm2 scale eventstream-worker +2
 
 # Or increase concurrency in worker code
 # backend/src/workers/event-processor.ts
@@ -842,23 +842,23 @@ pm2 restart all
 **Using Docker:**
 ```bash
 # Tag images before deploying
-docker tag streamline-backend:latest streamline-backend:v1.2.3
+docker tag eventstream-backend:latest eventstream-backend:v1.2.3
 
 # Rollback to previous version
 docker-compose down
-docker-compose up -d streamline-backend:v1.2.2
+docker-compose up -d eventstream-backend:v1.2.2
 ```
 
 ### Database Rollback
 
 ```bash
 # Restore from backup
-pg_restore -d streamline backup.dump
+pg_restore -d eventstream backup.dump
 
 # Or use point-in-time recovery (AWS RDS)
 aws rds restore-db-instance-to-point-in-time \
-  --source-db-instance-identifier streamline-prod \
-  --target-db-instance-identifier streamline-restored \
+  --source-db-instance-identifier eventstream-prod \
+  --target-db-instance-identifier eventstream-restored \
   --restore-time 2026-04-06T10:00:00Z
 ```
 

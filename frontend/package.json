@@ -1,7 +1,7 @@
 {
-  "name": "streamline-frontend",
+  "name": "eventstream-frontend",
   "version": "1.0.0",
-  "description": "StreamLine frontend application",
+  "description": "EventStream frontend application",
   "private": true,
   "scripts": {
     "dev": "next dev",

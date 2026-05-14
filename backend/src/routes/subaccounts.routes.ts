@@ -127,14 +127,14 @@ subaccountsRouter.post('/', async (req: AuthRequest, res, next) => {
       });
 
     // Generate webhook URL
-    const webhookUrl = `${process.env.WEBHOOK_BASE_URL || 'https://api.streamline.app/v1/ingest'}/${newSubaccount.webhookToken}`;
+    const webhookUrl = `${process.env.WEBHOOK_BASE_URL || 'https://api.eventstream.app/v1/ingest'}/${newSubaccount.webhookToken}`;
 
     // Create Sink in Twilio
     const sinkSid = await TwilioService.createSink(
       accountSid,
       twilioAuthToken,
       webhookUrl,
-      `StreamLine - ${friendlyName}`,
+      `EventStream - ${friendlyName}`,
       authType === 'apiKey' ? twilioSid : null
     );
 
@@ -185,7 +185,7 @@ subaccountsRouter.get('/:subaccount_id', verifySubaccountOwnership, async (req: 
       throw new AppError(404, 'Subaccount not found');
     }
 
-    const webhookUrl = `${process.env.WEBHOOK_BASE_URL || 'https://api.streamline.app/v1/ingest'}/${subaccount.webhookToken}`;
+    const webhookUrl = `${process.env.WEBHOOK_BASE_URL || 'https://api.eventstream.app/v1/ingest'}/${subaccount.webhookToken}`;
 
     res.json({
       subaccount: {

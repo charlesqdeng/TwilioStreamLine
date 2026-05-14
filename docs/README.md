@@ -1,4 +1,4 @@
-# StreamLine Documentation
+# EventStream Documentation
 
 Specialized setup guides and configuration instructions.
 
@@ -16,11 +16,11 @@ Complete step-by-step setup guide for first-time installation. Covers:
 How to create and use Twilio API Keys for authentication. Includes:
 - API Key creation in Twilio Console
 - Security benefits vs Auth Tokens
-- Configuration in StreamLine
+- Configuration in EventStream
 - Troubleshooting tips
 
 ### [GOOGLE_OAUTH_SETUP.md](./GOOGLE_OAUTH_SETUP.md)
-Configure "Sign in with Google" for StreamLine. Covers:
+Configure "Sign in with Google" for EventStream. Covers:
 - Google Cloud Console setup
 - OAuth 2.0 credentials creation
 - Callback URL configuration
@@ -37,7 +37,7 @@ Complete guide to configure email and SMS notifications. Includes:
 - Cost optimization tips
 
 ### [DEPLOYMENT.md](./DEPLOYMENT.md)
-Production deployment guide for StreamLine. Covers:
+Production deployment guide for EventStream. Covers:
 - Docker deployment
 - Heroku deployment
 - AWS deployment

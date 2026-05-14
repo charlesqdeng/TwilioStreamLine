@@ -1,7 +1,7 @@
 {
-  "name": "streamline-backend",
+  "name": "eventstream-backend",
   "version": "1.0.0",
-  "description": "StreamLine backend API server",
+  "description": "EventStream backend API server",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",

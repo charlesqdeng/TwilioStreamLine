@@ -1,6 +1,6 @@
-# StreamLine - Testing Guide
+# EventStream - Testing Guide
 
-Complete guide to test all features of StreamLine.
+Complete guide to test all features of EventStream.
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ Make sure you have:
 1. Navigate to http://localhost:3000
 2. Click "Get Started" or "Register"
 3. Fill in the registration form:
-   - Email: `test@streamline.app`
+   - Email: `test@eventstream.app`
    - Password: `Password123!`
    - Confirm Password: `Password123!`
 4. Click "Sign Up"
@@ -35,7 +35,7 @@ Make sure you have:
 1. Click "Logout" in the header
 2. Verify redirect to `/login`
 3. Login with:
-   - Email: `test@streamline.app`
+   - Email: `test@eventstream.app`
    - Password: `Password123!`
 4. Click "Sign In"
 
@@ -65,13 +65,13 @@ Make sure you have:
 
 **Backend Logs to Check:**
 ```
-✅ Created test user: test@streamline.app
+✅ Created test user: test@eventstream.app
 ✅ Sink created: DGxxxxxxx
 ```
 
 **Verify in Twilio Console:**
 1. Go to Twilio Console → Monitor → Events → Sinks
-2. You should see a new Sink with name "StreamLine - My Test Account"
+2. You should see a new Sink with name "EventStream - My Test Account"
 3. Webhook URL should match your ngrok URL
 
 #### Switch Between Subaccounts
@@ -159,7 +159,7 @@ Make sure you have:
    twilio api:core:messages:create \
      --from "+1234567890" \
      --to "+0987654321" \
-     --body "Test message from StreamLine"
+     --body "Test message from EventStream"
    ```
 
 **Option B: Make a Test Call**

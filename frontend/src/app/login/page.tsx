@@ -83,7 +83,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100 px-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-xl p-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">StreamLine</h1>
+          <h1 className="text-3xl font-bold text-gray-900">EventStream</h1>
           <p className="text-gray-600 mt-2">Sign in to your account</p>
         </div>
 
@@ -178,6 +178,16 @@ export default function LoginPage() {
             <Link href="/register" className="text-primary-600 hover:text-primary-700 font-medium">
               Sign up
             </Link>
+          </p>
+        </div>
+
+        <div className="mt-8 pt-6 border-t border-gray-200 text-center text-xs text-gray-500">
+          <p>Personal project by Charles Deng • Not affiliated with Twilio</p>
+          <p className="mt-1">
+            Issues? Contact{' '}
+            <a href="mailto:deng.charles@gmail.com" className="text-primary-600 hover:underline">
+              deng.charles@gmail.com
+            </a>
           </p>
         </div>
       </div>

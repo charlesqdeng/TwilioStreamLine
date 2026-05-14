@@ -245,7 +245,7 @@ export default function SettingsPage() {
                 </h3>
                 <p className="text-sm text-yellow-700">
                   Disconnecting will remove the Twilio Event Sink and Subscription from your Twilio account,
-                  and delete all stored events from StreamLine. This action cannot be undone.
+                  and delete all stored events from EventStream. This action cannot be undone.
                 </p>
               </div>
             </div>

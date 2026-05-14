@@ -1,6 +1,17 @@
-# StreamLine
+# EventStream
 
 A multi-tenant monitoring dashboard for Twilio subaccount owners to manage and monitor real-time Event Streams.
+
+---
+
+## ⚠️ Disclaimer
+
+**This is personal work by Charles Deng.** This project is not affiliated with or endorsed by Twilio. For any issues, bug reports, or questions about this code, please contact:
+
+**Charles Deng**  
+📧 Email: [deng.charles@gmail.com](mailto:deng.charles@gmail.com)
+
+---
 
 ## 🚀 Quick Start
 
@@ -65,7 +76,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 brew services start postgresql@14
 
 # Create database
-createdb streamline
+createdb eventstream
 
 # Run migrations
 cd backend
@@ -98,7 +109,7 @@ ngrok http 3001
 ## 📁 Project Structure
 
 ```
-streamline/
+eventstream/
 ├── backend/                 # Node.js + Express API
 │   ├── src/
 │   │   ├── config/         # Database, Redis configuration
@@ -286,7 +297,7 @@ For Twilio to send events to your local environment, you need a public URL:
 
 3. **Restart backend** to pick up the new URL
 
-4. When you add a subaccount, StreamLine will automatically register the webhook with Twilio
+4. When you add a subaccount, EventStream will automatically register the webhook with Twilio
 
 ## 📝 Implementation Status
 

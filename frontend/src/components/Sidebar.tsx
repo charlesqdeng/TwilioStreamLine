@@ -33,7 +33,7 @@ export default function Sidebar() {
     <>
       <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
         <div className="p-4 border-b border-gray-200">
-          <h1 className="text-2xl font-bold text-primary-600">StreamLine</h1>
+          <h1 className="text-2xl font-bold text-primary-600">EventStream</h1>
         </div>
 
         <div className="flex-1 overflow-y-auto p-4">

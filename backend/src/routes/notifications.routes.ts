@@ -192,11 +192,11 @@ notificationsRouter.post(
       const phoneToUse = (phone && phone.trim()) || prefs?.phoneNumber || null;
 
       // Prepare test notification
-      const subject = '[StreamLine] Test Notification';
+      const subject = '[EventStream] Test Notification';
       const message = `This is a test notification for ${subaccount.friendlyName}. If you received this, your notifications are working correctly!`;
       const html = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #6366f1;">StreamLine Test Notification</h2>
+          <h2 style="color: #6366f1;">EventStream Test Notification</h2>
           <p>This is a test notification for <strong>${subaccount.friendlyName}</strong>.</p>
           <p>If you received this, your notifications are working correctly! ✅</p>
           <p style="color: #6b7280; font-size: 14px; margin-top: 30px;">

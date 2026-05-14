@@ -15,7 +15,7 @@ Go to https://console.twilio.com
 ### Step 3: Create API Key
 1. Click the **"Create API Key"** button (blue button on the right)
 2. Fill in the form:
-   - **Friendly Name:** e.g., "StreamLine App"
+   - **Friendly Name:** e.g., "EventStream App"
    - **Key Type:** Select **"Standard"**
 3. Click **"Create API Key"**
 
@@ -26,12 +26,12 @@ Go to https://console.twilio.com
 - **SID:** Starts with `SK...` (you can see this anytime)
 - **Secret:** Long random string (you can ONLY see this once!)
 
-**For StreamLine, you need:**
+**For EventStream, you need:**
 - **Account SID:** Your main account SID (starts with `AC...`)
 - **API Key Secret:** The secret you just copied
 
-### Step 5: Add to StreamLine
-When adding a subaccount in StreamLine:
+### Step 5: Add to EventStream
+When adding a subaccount in EventStream:
 1. **Twilio Account SID:** Your `AC...` SID (find in Console → Account)
 2. **API Key:** Paste the **API Key Secret** (the long random string)
 

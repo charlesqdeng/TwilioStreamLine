@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-gradient-to-br from-primary-50 to-primary-100">
       <div className="text-center max-w-3xl">
-        <h1 className="text-6xl font-bold mb-4 text-gray-900">StreamLine</h1>
+        <h1 className="text-6xl font-bold mb-4 text-gray-900">EventStream</h1>
         <p className="text-xl text-gray-700 mb-4">
           Multi-tenant monitoring dashboard for Twilio subaccounts
         </p>
@@ -60,6 +60,16 @@ export default function Home() {
             </p>
           </div>
         </div>
+
+        <footer className="mt-16 text-center text-sm text-gray-600">
+          <p>Personal project by Charles Deng • Not affiliated with Twilio</p>
+          <p className="mt-1">
+            Questions or issues? Contact{' '}
+            <a href="mailto:deng.charles@gmail.com" className="text-primary-600 hover:underline">
+              deng.charles@gmail.com
+            </a>
+          </p>
+        </footer>
       </div>
     </main>
   );

@@ -1,6 +1,6 @@
 # Google OAuth Setup Guide
 
-This guide walks you through setting up "Sign in with Google" for StreamLine.
+This guide walks you through setting up "Sign in with Google" for EventStream.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ This guide walks you through setting up "Sign in with Google" for StreamLine.
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Click "Select a project" dropdown at the top
 3. Click "New Project"
-4. Enter project name: "StreamLine" (or your preferred name)
+4. Enter project name: "EventStream" (or your preferred name)
 5. Click "Create"
 
 ## Step 2: Enable Google+ API
@@ -27,7 +27,7 @@ This guide walks you through setting up "Sign in with Google" for StreamLine.
 2. Select **External** (for public use) or **Internal** (for organization only)
 3. Click "Create"
 4. Fill in the required fields:
-   - **App name**: StreamLine
+   - **App name**: EventStream
    - **User support email**: Your email
    - **App logo**: (optional) Upload your logo
    - **Developer contact information**: Your email
@@ -44,7 +44,7 @@ This guide walks you through setting up "Sign in with Google" for StreamLine.
 1. Go to **APIs & Services** → **Credentials**
 2. Click "Create Credentials" → "OAuth client ID"
 3. Select **Application type**: Web application
-4. **Name**: StreamLine Web Client
+4. **Name**: EventStream Web Client
 5. **Authorized JavaScript origins**:
    - Development: `http://localhost:3000`
    - Production: `https://yourdomain.com`
@@ -106,7 +106,7 @@ You should see in the backend logs:
 2. Click "Sign in with Google"
 3. Select your Google account
 4. Grant permissions (email and profile)
-5. You should be redirected back to StreamLine and logged in!
+5. You should be redirected back to EventStream and logged in!
 
 ## Production Deployment
 
@@ -115,10 +115,10 @@ You should see in the backend logs:
 When deploying to production, add your production URLs:
 
 **Authorized JavaScript origins:**
-- `https://streamline.yourdomain.com`
+- `https://eventstream.yourdomain.com`
 
 **Authorized redirect URIs:**
-- `https://api.streamline.yourdomain.com/api/auth/google/callback`
+- `https://api.eventstream.yourdomain.com/api/auth/google/callback`
 
 ### Update Environment Variables
 
@@ -126,13 +126,13 @@ When deploying to production, add your production URLs:
 ```bash
 GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
 GOOGLE_CLIENT_SECRET=your-client-secret
-BACKEND_URL=https://api.streamline.yourdomain.com
-FRONTEND_URL=https://streamline.yourdomain.com
+BACKEND_URL=https://api.eventstream.yourdomain.com
+FRONTEND_URL=https://eventstream.yourdomain.com
 ```
 
 **Frontend production .env:**
 ```bash
-NEXT_PUBLIC_API_URL=https://api.streamline.yourdomain.com
+NEXT_PUBLIC_API_URL=https://api.eventstream.yourdomain.com
 ```
 
 ## Troubleshooting
@@ -212,16 +212,16 @@ When a user signs up with email/password and later uses Google OAuth (or vice ve
 
 If you want cleaner OAuth URLs:
 
-1. **Use a custom domain**: `auth.streamline.com`
+1. **Use a custom domain**: `auth.eventstream.com`
 2. **Update authorized URIs**:
-   - `https://auth.streamline.com/api/auth/google/callback`
+   - `https://auth.eventstream.com/api/auth/google/callback`
 3. **Point domain to backend** in DNS
 
 ## FAQ
 
 ### Q: Can users have multiple OAuth providers?
 
-A: Currently, StreamLine supports Google OAuth and email/password. Each user is identified by email address, so the same email can use different auth methods.
+A: Currently, EventStream supports Google OAuth and email/password. Each user is identified by email address, so the same email can use different auth methods.
 
 ### Q: What happens if a user signs up with email/password, then uses Google OAuth?
 
@@ -233,7 +233,7 @@ A: Yes, you can modify the frontend to hide the email/password form and only sho
 
 ### Q: Do I need to store Google access tokens?
 
-A: No. StreamLine uses Google OAuth only for authentication, not for accessing Google APIs. We generate our own JWT tokens for session management.
+A: No. EventStream uses Google OAuth only for authentication, not for accessing Google APIs. We generate our own JWT tokens for session management.
 
 ### Q: How do I test OAuth without publishing my app?
 

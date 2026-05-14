@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to StreamLine will be documented in this file.
+All notable changes to EventStream will be documented in this file.
 
 ## [Unreleased]
 

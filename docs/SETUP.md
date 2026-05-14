@@ -1,6 +1,6 @@
-# StreamLine - Complete Setup Guide
+# EventStream - Complete Setup Guide
 
-Follow these steps to get StreamLine running locally.
+Follow these steps to get EventStream running locally.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ Edit `backend/.env` with your settings:
 
 ```env
 # Database
-DATABASE_URL=postgresql://user:password@localhost:5432/streamline
+DATABASE_URL=postgresql://user:password@localhost:5432/eventstream
 
 # Redis
 REDIS_URL=redis://localhost:6379
@@ -87,11 +87,11 @@ NEXT_PUBLIC_WS_URL=http://localhost:3001
 brew services start postgresql
 
 # Create database
-createdb streamline
+createdb eventstream
 
 # Or use psql:
 psql postgres
-CREATE DATABASE streamline;
+CREATE DATABASE eventstream;
 \q
 ```
 
@@ -232,10 +232,10 @@ The app will create a Subscription in Twilio linking your Sink to the selected e
 pg_isready
 
 # Check database exists
-psql -l | grep streamline
+psql -l | grep eventstream
 
 # Test connection
-psql postgresql://user:password@localhost:5432/streamline
+psql postgresql://user:password@localhost:5432/eventstream
 ```
 
 ### Redis Connection Errors
