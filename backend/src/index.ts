@@ -6,6 +6,7 @@ import { Server as SocketIOServer } from 'socket.io';
 import dotenv from 'dotenv';
 import Redis from 'ioredis';
 import passport from 'passport';
+import path from 'path';
 
 import { authRouter } from './routes/auth.routes';
 import { subaccountsRouter } from './routes/subaccounts.routes';
@@ -16,7 +17,7 @@ import { errorHandler } from './middleware/error.middleware';
 import { setupSocketIO } from './socket/socket.config';
 import { configureOAuth } from './services/oauth.service';
 
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 // Configure OAuth strategies
 configureOAuth();

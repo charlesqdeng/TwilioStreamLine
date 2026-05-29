@@ -10,11 +10,12 @@
  */
 
 import dotenv from 'dotenv';
+import path from 'path';
 import { db } from '../config/database';
 import { twilioSubaccounts, users } from '../db/schema';
 import { eq } from 'drizzle-orm';
 
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
 
 async function listAllSubaccounts() {
   console.log('\n📋 All Subaccounts:\n');
