@@ -53,6 +53,10 @@ postgres-data/
 
 # Documentation (excluded from commits)
 CLAUDE.md
+PRD.md
+
+# Claude Code configuration
+.claude/
 
 # Test scripts
 backend/test-email.js
